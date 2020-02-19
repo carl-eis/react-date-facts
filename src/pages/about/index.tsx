@@ -4,7 +4,7 @@ interface IProps {
   [x: string]: any;
 }
 
-const AboutPage: FC<IProps> = (props) => {
+export const AboutPage: FC<IProps> = (props) => {
   const {  } = props;
   return (
     <div>
@@ -14,5 +14,3 @@ const AboutPage: FC<IProps> = (props) => {
 };
 
 AboutPage.defaultProps = {};
-
-export default AboutPage;

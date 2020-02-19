@@ -4,7 +4,7 @@ interface IProps {
   [x: string]: any;
 }
 
-const HomePage: FC<IProps> = (props) => {
+export const HomePage: FC<IProps> = (props) => {
   const {  } = props;
   return (
     <div>
@@ -14,5 +14,3 @@ const HomePage: FC<IProps> = (props) => {
 };
 
 HomePage.defaultProps = {};
-
-export default HomePage;
