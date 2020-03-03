@@ -107,7 +107,7 @@ export const HomePage: FC<IContainerProps> = (props) => {
               <StyledLabel>Number of days:</StyledLabel> {daysInRange || 'None selected.'}
             </ListGroupItem>
             <ListGroupItem>
-              <StyledLabel>Leap year?:</StyledLabel> {hasLeapYear.toString()}
+              <StyledLabel>Are either the Start or End Date a leap year?:</StyledLabel> {hasLeapYear ? 'Yes!' : 'No'}
             </ListGroupItem>
             <ListGroupItem>
               <StyledLabel>Number of mondays:</StyledLabel> {numberOfMondays}
