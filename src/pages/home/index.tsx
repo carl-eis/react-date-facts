@@ -3,7 +3,7 @@ import Moment from 'moment';
 import DateRangePicker from './components/date-range-picker-1';
 import { connect } from 'react-redux';
 import { mapStateToProps, mapDispatchToProps } from './container';
-import { Container, Row, Col, ListGroup, ListGroupItem, Input, Spinner } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
 import { StyledFactBox, StyledLabel, StyledPageContainer, StyledSpinnerPositioner } from './styles';
 
 import isLeapYear from './helpers/is-leap-year';
