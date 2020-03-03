@@ -4,9 +4,11 @@ export const StyledPageContainer = styled.div`
   margin-top: 15px;
 `;
 
-export const StyledLabel = styled.span`
-  font-weight: 500;
+export const StyledLabel = styled.div`
+  font-weight: bold;
 `;
+
+export const StyledLabelContent = styled.div``;
 
 export const StyledFactBox = styled.div`
   display: flex;

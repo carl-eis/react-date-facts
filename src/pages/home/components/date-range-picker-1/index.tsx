@@ -1,5 +1,6 @@
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC } from 'react';
 import { DateRangePicker as DateRangePickerLib } from 'rsuite';
+import { StyledRangePickerWrapper } from './styles';
 
 interface IProps {
   onChange: (nextRange: any[]) => void;
@@ -12,15 +13,13 @@ const DateRangePicker: FC<IProps> = (props) => {
     value,
   } = props;
 
-  const handleChange = useCallback((nextValue) => {
-    onChange(nextValue);
-  }, []);
-
   return (
-    <DateRangePickerLib
-      onChange={handleChange}
-      value={value}
-    />
+    <StyledRangePickerWrapper>
+      <DateRangePickerLib
+        onChange={onChange}
+        value={value}
+      />
+    </StyledRangePickerWrapper>
   );
 };
 

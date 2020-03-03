@@ -6,6 +6,32 @@ import { mapStateToProps, mapDispatchToProps } from './container';
 import { Container, Row, Col, ListGroup, ListGroupItem, Input, Spinner } from 'reactstrap';
 import { StyledFactBox, StyledLabel, StyledPageContainer, StyledSpinnerPositioner } from './styles';
 
+import isLeapYear from './helpers/is-leap-year';
+import countMondays from './helpers/count-mondays';
+
+const parseDateObj = (dateString?: string): Date | null => {
+  if (!dateString) {
+    return null;
+  }
+  return new Date(dateString);
+};
+
+const getDaysInRange = (startDate: string, endDate: string): number => {
+  if (!startDate || !endDate) {
+    return null;
+  }
+  const parsedStartDate = parseDateObj(startDate);
+  const parsedEndDate = parseDateObj(endDate);
+  const milisecondsInDay = 1000 * 60 * 60 * 24;
+  return (parsedEndDate.getTime() - parsedStartDate.getTime()) / milisecondsInDay;
+};
+
+const rangeContainsLeapYear = (startDate: string, endDate: string): boolean => {
+  const startYear = new Date(startDate).getFullYear();
+  const endYear = new Date(endDate).getFullYear();
+  return isLeapYear(startYear) || isLeapYear(endYear);
+};
+
 const getReadableDate = (date: string): string => {
   if (!date) {
     return 'No date selected.';
@@ -17,12 +43,6 @@ const getIsoDate = (date: Date): string => {
   return Moment(date).toISOString();
 };
 
-const parseDateObj = (dateString?: string): Date | null => {
-  if (!dateString) {
-    return null;
-  }
-  return new Date(dateString);
-};
 
 interface IContainerProps {
   dateFact?: string;
@@ -60,42 +80,52 @@ export const HomePage: FC<IContainerProps> = (props) => {
 
   const startDateReadable: string = getReadableDate(startDate);
   const endDateReadable: string = getReadableDate(endDate);
+  const daysInRange: number = getDaysInRange(startDate, endDate);
+  const hasLeapYear: boolean = rangeContainsLeapYear(startDate, endDate);
+  const numberOfMondays: number = countMondays(startDate, endDate) || 0;
 
   return (
     <StyledPageContainer>
       <Container>
-        <Row>
-          <Col>
-            <h1>Simple date facts!</h1>
-            <p>Please select a date range below to get started.</p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <DateRangePicker
-              onChange={handleDateRangeChange}
-              value={rangePickerValue}
-            />
-          </Col>
-          <Col>
-            <ListGroup>
-              <ListGroupItem>
-                <StyledLabel>Start Date:</StyledLabel> {startDateReadable || 'None selected.'}
-              </ListGroupItem>
-              <ListGroupItem>
-                <StyledLabel>End Date:</StyledLabel> {endDateReadable || 'None selected.'}
-              </ListGroupItem>
-            </ListGroup>
-          </Col>
-        </Row>
+        <h1>Simple date facts</h1>
+        <p>Please select a date range below to get started.</p>
+
+        <DateRangePicker
+          onChange={handleDateRangeChange}
+          value={rangePickerValue}
+        />
+
+        <div>
+          <ListGroup>
+            <ListGroupItem>
+              <StyledLabel>Start Date:</StyledLabel> {startDateReadable || 'None selected.'}
+            </ListGroupItem>
+            <ListGroupItem>
+              <StyledLabel>End Date:</StyledLabel> {endDateReadable || 'None selected.'}
+            </ListGroupItem>
+            <ListGroupItem>
+              <StyledLabel>Number of days:</StyledLabel> {daysInRange || 'None selected.'}
+            </ListGroupItem>
+            <ListGroupItem>
+              <StyledLabel>Leap year?:</StyledLabel> {hasLeapYear.toString()}
+            </ListGroupItem>
+            <ListGroupItem>
+              <StyledLabel>Number of mondays:</StyledLabel> {numberOfMondays}
+            </ListGroupItem>
+          </ListGroup>
+        </div>
+
         <StyledFactBox>
           {isLoadingFact && (
             <StyledSpinnerPositioner>
-              <Spinner color="primary" />
+              <Spinner color="primary"/>
             </StyledSpinnerPositioner>
           )}
           {!isLoadingFact && (
-            <p>{dateFact || 'No fact yet!'}</p>
+            <div>
+              <h4>What happened on this day?</h4>
+              <p>{dateFact || 'Nothing yet!'}</p>
+            </div>
           )}
         </StyledFactBox>
       </Container>

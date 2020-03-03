@@ -2,7 +2,6 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { DATE_RANGE_CHANGE, factFetchError, factFetchSuccess } from '../../actions';
 import { IReduxAction } from '../../../../core/interfaces';
 import fetchDateFact from '../../api/fetch-date-fact';
-import Moment from 'moment';
 
 function* sagaWorker(action: IReduxAction) {
   try {
@@ -12,9 +11,9 @@ function* sagaWorker(action: IReduxAction) {
       },
     } = action;
 
-    const parsedDate = Moment(startDate);
-    const day = parsedDate.day();
-    const month = parsedDate.month();
+    const parsedDate = new Date(startDate);
+    const day = parsedDate.getDate();
+    const month = parsedDate.getMonth() + 1;
 
     const dateFact = yield call(fetchDateFact, day, month);
     return yield put(factFetchSuccess(dateFact));
