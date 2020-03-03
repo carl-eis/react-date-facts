@@ -9,6 +9,7 @@ export const StyledLabel = styled.span`
 `;
 
 export const StyledFactBox = styled.div`
+  display: flex;
   margin: 15px 0;
   border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -17,7 +18,8 @@ export const StyledFactBox = styled.div`
 
 export const StyledSpinnerPositioner = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   padding: 5px 0;
+  width: 100%;
 `;

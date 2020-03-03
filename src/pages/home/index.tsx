@@ -1,5 +1,6 @@
 import React, { FC, useMemo, useCallback } from 'react';
 import Moment from 'moment';
+import DateRangePicker from './components/date-range-picker-1';
 import { connect } from 'react-redux';
 import { mapStateToProps, mapDispatchToProps } from './container';
 import { Container, Row, Col, ListGroup, ListGroupItem, Input, Spinner } from 'reactstrap';
@@ -10,6 +11,17 @@ const getReadableDate = (date: string): string => {
     return 'No date selected.';
   }
   return Moment(date).format('YYYY-MM-DD');
+};
+
+const getIsoDate = (date: Date): string => {
+  return Moment(date).toISOString();
+};
+
+const parseDateObj = (dateString?: string): Date | null => {
+  if (!dateString) {
+    return null;
+  }
+  return new Date(dateString);
 };
 
 interface IContainerProps {
@@ -29,12 +41,22 @@ export const HomePage: FC<IContainerProps> = (props) => {
     startDate,
   } = props;
 
-  const startDateObj = useMemo(() => new Date(startDate), [startDate]);
-  const endDateObj = useMemo(() => new Date(endDate), [endDate]);
+  const startDateObj = useMemo(() => parseDateObj(startDate), [startDate, parseDateObj]);
+  const endDateObj = useMemo(() => parseDateObj(endDate), [endDate, parseDateObj]);
 
-  const handleDateRangeChange = useCallback((event) => {
+  const rangePickerValue = useMemo(() => {
+    if (!startDateObj || !endDateObj) {
+      return [];
+    }
+    return [startDateObj, endDateObj];
+  }, [startDateObj, endDateObj]);
 
-  }, []);
+  const handleDateRangeChange = useCallback((nextRange: any[]) => {
+    const [nextStart, nextEnd] = nextRange;
+    const startDateStr = getIsoDate(nextStart);
+    const endDateStr = getIsoDate(nextEnd);
+    onChangeDateRange(startDateStr, endDateStr);
+  }, [getIsoDate, onChangeDateRange]);
 
   const startDateReadable: string = getReadableDate(startDate);
   const endDateReadable: string = getReadableDate(endDate);
@@ -51,6 +73,10 @@ export const HomePage: FC<IContainerProps> = (props) => {
         <Row>
           <Col>
             <Input type="text" name="dateRangeText" id="dateRangeText" placeholder={'Select a date range.'} />
+            <DateRangePicker
+              onChange={handleDateRangeChange}
+              value={rangePickerValue}
+            />
           </Col>
           <Col>
             <ListGroup>
@@ -82,7 +108,6 @@ HomePage.defaultProps = {
   dateFact: '',
   endDate: '',
   isLoadingFact: false,
-  onChangeDateRange: () => {},
   startDate: '',
 };
 
