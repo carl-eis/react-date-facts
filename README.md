@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React date facts
+
+This project is hosted at http://carl-react-date-facts.surge.sh/
+
+Please note that this project calls an insecure API and will not work over a secure url (https)
 
 ## Available Scripts
 
