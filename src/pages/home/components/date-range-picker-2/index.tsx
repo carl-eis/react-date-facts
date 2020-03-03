@@ -6,10 +6,10 @@ interface IProps {
 }
 
 const DateRangePickerCustom: FC<IProps> = (props) => {
-  const {  } = props;
   return (
     <div>
       <Input type="text" name="dateRangeText" id="dateRangeText" placeholder={'Select a date range.'} />
+      {/* TODO: Custom date range picker */}
     </div>
   );
 };
