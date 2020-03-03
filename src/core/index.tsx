@@ -5,7 +5,6 @@ import 'rsuite/dist/styles/rsuite-default.css';
 
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import { hot } from 'react-hot-loader/root';
 import { persistor, store } from './store';
 import { history } from './config/history';
 
