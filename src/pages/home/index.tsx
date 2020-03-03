@@ -72,7 +72,6 @@ export const HomePage: FC<IContainerProps> = (props) => {
         </Row>
         <Row>
           <Col>
-            <Input type="text" name="dateRangeText" id="dateRangeText" placeholder={'Select a date range.'} />
             <DateRangePicker
               onChange={handleDateRangeChange}
               value={rangePickerValue}
