@@ -23,7 +23,7 @@ const getDaysInRange = (startDate: string, endDate: string): number => {
   const parsedStartDate = parseDateObj(startDate);
   const parsedEndDate = parseDateObj(endDate);
   const milisecondsInDay = 1000 * 60 * 60 * 24;
-  return (parsedEndDate.getTime() - parsedStartDate.getTime()) / milisecondsInDay;
+  return Math.ceil((parsedEndDate.getTime() - parsedStartDate.getTime()) / milisecondsInDay);
 };
 
 const rangeContainsLeapYear = (startDate: string, endDate: string): boolean => {
