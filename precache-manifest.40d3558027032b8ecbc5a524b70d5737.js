@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d58cb76f041557df3e71ef4cced1690e",
+    "revision": "95098b3084fa5548508c1076039e5ff7",
     "url": "/react-date-facts/index.html"
   },
   {
-    "revision": "b77929d1388cb7b0b627",
+    "revision": "311766327c0fbb1a2952",
     "url": "/react-date-facts/static/css/2.37d27531.chunk.css"
   },
   {
-    "revision": "204f7132643a6125f5fd",
+    "revision": "bf04bcf06afa5991adb7",
     "url": "/react-date-facts/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "b77929d1388cb7b0b627",
-    "url": "/react-date-facts/static/js/2.8b2bcfb7.chunk.js"
+    "revision": "311766327c0fbb1a2952",
+    "url": "/react-date-facts/static/js/2.dc1f76b5.chunk.js"
   },
   {
     "revision": "bf23039b4e70a07c5aeb1b4010df3572",
-    "url": "/react-date-facts/static/js/2.8b2bcfb7.chunk.js.LICENSE.txt"
+    "url": "/react-date-facts/static/js/2.dc1f76b5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "204f7132643a6125f5fd",
-    "url": "/react-date-facts/static/js/main.680f1803.chunk.js"
+    "revision": "bf04bcf06afa5991adb7",
+    "url": "/react-date-facts/static/js/main.caaf8dca.chunk.js"
   },
   {
     "revision": "25fbd8d3c699471778cf",
