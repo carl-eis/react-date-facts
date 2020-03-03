@@ -1,4 +1,7 @@
 import React from 'react';
+
+import 'bootstrap/dist/css/bootstrap.css';
+
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { hot } from 'react-hot-loader/root';
