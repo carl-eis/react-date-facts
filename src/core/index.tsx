@@ -19,10 +19,10 @@ function App() {
         loading={<div>Loading...</div>}
         persistor={persistor}
       >
+        <ConnectedRouter history={history}>
+          <AppRouter/>
+        </ConnectedRouter>
       </PersistGate>
-      <ConnectedRouter history={history}>
-        <AppRouter/>
-      </ConnectedRouter>
     </Provider>
   );
 }
