@@ -5,7 +5,6 @@ interface IProps {
 }
 
 export const HomePage: FC<IProps> = (props) => {
-  const {  } = props;
   return (
     <div>
       This is the home page
