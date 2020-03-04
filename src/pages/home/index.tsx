@@ -72,8 +72,8 @@ export const HomePage: FC<IContainerProps> = (props) => {
     startDate,
   } = props;
 
-  const startDateObj = useMemo(() => parseDateObj(startDate), [startDate, parseDateObj]);
-  const endDateObj = useMemo(() => parseDateObj(endDate), [endDate, parseDateObj]);
+  const startDateObj = useMemo(() => parseDateObj(startDate), [startDate]);
+  const endDateObj = useMemo(() => parseDateObj(endDate), [endDate]);
 
   const rangePickerValue = useMemo(() => {
     if (!startDateObj || !endDateObj) {
