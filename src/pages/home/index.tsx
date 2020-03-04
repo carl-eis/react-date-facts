@@ -1,9 +1,19 @@
 import React, { FC, useMemo, useCallback } from 'react';
 import Moment from 'moment';
-import DateRangePicker from './components/date-range-picker-1';
 import { connect } from 'react-redux';
+
+import {
+  Container,
+  ListGroup,
+  ListGroupItem,
+  Spinner,
+  Row,
+  Col,
+} from 'reactstrap';
+
+import DateRangePicker from './components/date-range-picker-1';
+import CustomRangePicker from './components/date-range-picker-2';
 import { mapStateToProps, mapDispatchToProps } from './container';
-import { Container, ListGroup, ListGroupItem, Spinner } from 'reactstrap';
 import { StyledFactBox, StyledLabel, StyledPageContainer, StyledSpinnerPositioner } from './styles';
 
 import isLeapYear from './helpers/is-leap-year';
@@ -128,6 +138,15 @@ export const HomePage: FC<IContainerProps> = (props) => {
             </div>
           )}
         </StyledFactBox>
+
+        <Row>
+          <Col>
+            <CustomRangePicker
+              onChange={handleDateRangeChange}
+              value={rangePickerValue}
+            />
+          </Col>
+        </Row>
       </Container>
     </StyledPageContainer>
   );
