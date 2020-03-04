@@ -139,15 +139,6 @@ export const HomePage: FC<IContainerProps> = (props) => {
             </div>
           )}
         </StyledFactBox>
-
-        <Row>
-          <Col>
-            <CustomRangePicker
-              onChange={handleDateRangeChange}
-              value={rangePickerValue}
-            />
-          </Col>
-        </Row>
       </Container>
     </StyledPageContainer>
   );
