@@ -30,10 +30,11 @@ const getDaysInRange = (startDate: string, endDate: string): number => {
   if (!startDate || !endDate) {
     return null;
   }
-  const parsedStartDate = parseDateObj(startDate);
-  const parsedEndDate = parseDateObj(endDate);
+  const parsedStartDate = new Date(startDate);
+  const parsedEndDate = new Date(endDate);
   const milisecondsInDay = 1000 * 60 * 60 * 24;
-  return Math.ceil((parsedEndDate.getTime() - parsedStartDate.getTime()) / milisecondsInDay);
+  const difference = Math.floor((parsedEndDate.getTime() - parsedStartDate.getTime()) / milisecondsInDay);
+  return difference > 0 ? difference - 1 : difference;
 };
 
 const rangeContainsLeapYear = (startDate: string, endDate: string): boolean => {
@@ -114,7 +115,7 @@ export const HomePage: FC<IContainerProps> = (props) => {
               <StyledLabel>End Date:</StyledLabel> {endDateReadable || 'None selected.'}
             </ListGroupItem>
             <ListGroupItem>
-              <StyledLabel>Number of days:</StyledLabel> {daysInRange || 'None selected.'}
+              <StyledLabel>Number of days between selected dates:</StyledLabel> {daysInRange || 0}
             </ListGroupItem>
             <ListGroupItem>
               <StyledLabel>Are either the Start or End Date a leap year?:</StyledLabel> {hasLeapYear ? 'Yes!' : 'No'}
